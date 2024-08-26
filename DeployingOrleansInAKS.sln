@@ -8,15 +8,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployingOrleansInAKS.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{08E8A12B-7AFF-44B9-A077-99FF60F539F0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{0F3A7FB1-73C0-4348-8037-D3CBBBE1E573}"
-	ProjectSection(SolutionItems) = preProject
-		api-deployment.yaml = api-deployment.yaml
-		api-service.yaml = api-service.yaml
-		redis-secret.yaml = redis-secret.yaml
-		redis-service.yaml = redis-service.yaml
-		redis.deployment.yaml = redis.deployment.yaml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
