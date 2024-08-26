@@ -30,10 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+
 
 app.MapGet("/greet/{name}", (string name, IGrainFactory grainFactory) =>
 {
@@ -42,9 +39,9 @@ app.MapGet("/greet/{name}", (string name, IGrainFactory grainFactory) =>
 })
 .WithOpenApi();
 
+app.MapGet("/", () => "Hello World");
+
 app.Run();
-
-
 
 
 
