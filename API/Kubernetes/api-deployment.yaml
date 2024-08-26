@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: orleansgroupacr.azurecr.io/api:v8
+        image: orleansgroupacr.azurecr.io/api:v15
         env:
         - name: ORLEANS_SERVICE_ID
           value: "orleans-in-aks"
@@ -34,12 +34,6 @@ spec:
               fieldPath: status.podIP     
         - name: ASPNETCORE_FORWARDEDHEADERS_ENABLED
           value: "true"
-        - name: HTTP_PORTS
-          value: "80"
-        - name: Orleans__Clustering__ProviderType
-          value: "Redis"
-        - name: Orleans__Clustering__ServiceKey
-          value: "redis"
         - name: ConnectionStrings__redis
           valueFrom:
             secretKeyRef:

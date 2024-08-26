@@ -1,25 +1,28 @@
+using StackExchange.Redis;
+
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.AddServiceDefaults();
+builder.AddServiceDefaults();
 var dashBoardPort = builder.Configuration["ORLEANS-SILO-DASHBOARD"]!;
-var redisConnectionString = builder.Configuration["ConnectionStrings:redis"]!;
+var redisConnectionString = builder.Configuration.GetConnectionString("redis")!;
 var dashboardPortInt = Convert.ToInt32(dashBoardPort);
+Console.WriteLine(dashboardPortInt);
+Console.WriteLine("redis connection");
+Console.WriteLine(dashboardPortInt);
+
 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.AddKeyedRedisClient("redis");
+
 builder.UseOrleans(option =>
 {
     if(builder.Environment.IsProduction())
     {
         option.UseKubernetesHosting();
     }
-    //if (!String.IsNullOrEmpty(redisConnectionString))
-    //{
-    //option.UseRedisClustering(redisConnectionString);
+    option.UseRedisClustering(redisConnectionString);
 
-    //}
     option.UseDashboard(option =>
     {
         option.Port = dashboardPortInt;
@@ -27,7 +30,7 @@ builder.UseOrleans(option =>
 });
 var app = builder.Build();
 
-//app.MapDefaultEndpoints();
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
