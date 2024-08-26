@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: orleansgroupacr.azurecr.io/api:v6
+        image: orleansgroupacr.azurecr.io/api:v8
         env:
         - name: ORLEANS_SERVICE_ID
           value: "orleans-in-aks"
