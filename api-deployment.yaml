@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: your-api-image:latest
+        env:
+        - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES
+          value: "true"
+        - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES
+          value: "true"
+        - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY
+          value: "in_memory"
+        - name: ASPNETCORE_FORWARDEDHEADERS_ENABLED
+          value: "true"
+        - name: HTTP_PORTS
+          value: "80"
+        - name: Orleans__Clustering__ProviderType
+          value: "Redis"
+        - name: Orleans__Clustering__ServiceKey
+          value: "redis"
+        - name: ConnectionStrings__redis
+          valueFrom:
+            secretKeyRef:
+              name: redis-connection-string
+              key: connectionString
+        - name: Orleans__ClusterId
+          valueFrom:
+            configMapKeyRef:
+              name: orleans-cluster-config
+              key: clusterId
+        - name: Orleans__ServiceId
+          valueFrom:
+            configMapKeyRef:
+              name: orleans-cluster-config
+              key: serviceId
+        - name: Orleans__EnableDistributedTracing
+          value: "true"
+        - name: Orleans__Endpoints__SiloPort
+          value: "8000"
+        - name: Orleans__Endpoints__GatewayPort
+          value: "8001"
+        - name: ORLEANS-SILO-DASHBOARD
+          value: "8002"
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 8000
+        - containerPort: 8001
+        - containerPort: 8002

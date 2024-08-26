@@ -2,11 +2,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployingOrleansInAKS.AppHost", "DeployingOrleansInAKS.AppHost\DeployingOrleansInAKS.AppHost.csproj", "{821EE912-7DB3-4DD9-A537-34153823016D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployingOrleansInAKS.AppHost", "DeployingOrleansInAKS.AppHost\DeployingOrleansInAKS.AppHost.csproj", "{821EE912-7DB3-4DD9-A537-34153823016D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeployingOrleansInAKS.ServiceDefaults", "DeployingOrleansInAKS.ServiceDefaults\DeployingOrleansInAKS.ServiceDefaults.csproj", "{D934D845-955F-4841-B25D-9D36D7192939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{08E8A12B-7AFF-44B9-A077-99FF60F539F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{08E8A12B-7AFF-44B9-A077-99FF60F539F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{0F3A7FB1-73C0-4348-8037-D3CBBBE1E573}"
+	ProjectSection(SolutionItems) = preProject
+		api-deployment.yaml = api-deployment.yaml
+		api-service.yaml = api-service.yaml
+		orleans-cluster-config.yaml = orleans-cluster-config.yaml
+		redis-secret.yaml = redis-secret.yaml
+		redis-service.yaml = redis-service.yaml
+		redis.deployment.yaml = redis.deployment.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
