@@ -2,7 +2,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.AddServiceDefaults();
 var dashBoardPort = builder.Configuration["ORLEANS-SILO-DASHBOARD"]!;
-var redisConnectionString = builder.Configuration["ConnectionStrings:redis"]!;
 var dashboardPortInt = Convert.ToInt32(dashBoardPort);
 
 
@@ -15,11 +14,7 @@ builder.UseOrleans(option =>
     {
         option.UseKubernetesHosting();
     }
-    //if (!String.IsNullOrEmpty(redisConnectionString))
-    //{
-    //option.UseRedisClustering(redisConnectionString);
 
-    //}
     option.UseDashboard(option =>
     {
         option.Port = dashboardPortInt;
