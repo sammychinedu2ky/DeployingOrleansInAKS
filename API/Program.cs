@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 var dashBoardPort = builder.Configuration["ORLEANS-SILO-DASHBOARD"]!;
-int.TryParse(dashBoardPort, out var dashBoardPortInt);
+var dashboardPortInt = Convert.ToInt32(dashBoardPort);
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -16,7 +16,7 @@ builder.UseOrleans(option =>
     }
     option.UseDashboard(option =>
     {
-        option.Port = dashBoardPortInt;
+        option.Port = dashboardPortInt;
     });
 });
 var app = builder.Build();
