@@ -2,23 +2,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 var dashBoardPort = builder.Configuration["ORLEANS-SILO-DASHBOARD"]!;
+var redisConnectionString = builder.Configuration["ConnectionStrings:redis"]!;
 var dashboardPortInt = Convert.ToInt32(dashBoardPort);
 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.AddKeyedRedisClient("redis");
-builder.UseOrleans(option =>
-{
-    if(builder.Environment.IsProduction())
-    {
-        option.UseKubernetesHosting();
-    }
-    option.UseDashboard(option =>
-    {
-        option.Port = dashboardPortInt;
-    });
-});
+//builder.AddKeyedRedisClient("redis");
+//builder.UseOrleans(option =>
+//{
+//    if(builder.Environment.IsProduction())
+//    {
+//        option.UseKubernetesHosting();
+//    }
+//    if (!String.IsNullOrEmpty(redisConnectionString))
+//    {
+//        Console.WriteLine($"Using Redis Clustering with connection string: {redisConnectionString}");
+//        option.UseRedisClustering(redisConnectionString);
+
+//    }
+//    option.UseDashboard(option =>
+//    {
+//        option.Port = dashboardPortInt;
+//    });
+//});
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
@@ -32,12 +39,12 @@ if (app.Environment.IsDevelopment())
 
 
 
-app.MapGet("/greet/{name}", (string name, IGrainFactory grainFactory) =>
-{
-    var helloGrain = grainFactory.GetGrain<IHelloGrain>(name);
-    return helloGrain.SayHello(name);
-})
-.WithOpenApi();
+//app.MapGet("/greet/{name}", (string name, IGrainFactory grainFactory) =>
+//{
+//    var helloGrain = grainFactory.GetGrain<IHelloGrain>(name);
+//    return helloGrain.SayHello(name);
+//})
+//.WithOpenApi();
 
 app.MapGet("/", () => "Hello World");
 

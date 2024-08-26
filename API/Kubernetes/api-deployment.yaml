@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: api
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: orleansgroupacr.azurecr.io/api:v3
+        image: orleansgroupacr.azurecr.io/api:v6
         env:
         - name: ORLEANS_SERVICE_ID
           value: "orleans-in-aks"
