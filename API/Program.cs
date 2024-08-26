@@ -10,6 +10,10 @@ builder.Services.AddSwaggerGen();
 builder.AddKeyedRedisClient("redis");
 builder.UseOrleans(option =>
 {
+    if(builder.Environment.IsProduction())
+    {
+        option.UseKubernetesHosting();
+    }
     option.UseDashboard(option =>
     {
         option.Port = dashBoardPortInt;

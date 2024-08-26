@@ -12,7 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 	ProjectSection(SolutionItems) = preProject
 		api-deployment.yaml = api-deployment.yaml
 		api-service.yaml = api-service.yaml
-		orleans-cluster-config.yaml = orleans-cluster-config.yaml
 		redis-secret.yaml = redis-secret.yaml
 		redis-service.yaml = redis-service.yaml
 		redis.deployment.yaml = redis.deployment.yaml
