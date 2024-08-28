@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: orleansgroupacr.azurecr.io/api:v2
+        image: orleansgroupacr.azurecr.io/api:v6
         env:
         - name: ORLEANS_SERVICE_ID
           value: "orleans-in-aks"
@@ -50,10 +50,10 @@ spec:
         - name: ORLEANS-SILO-DASHBOARD
           value: "8000"
         - name: DOTNET_SHUTDOWNTIMEOUTSECONDS
-          value: "6"
+          value: "120"
         ports:
         - containerPort: 8080
         - containerPort: 11111
         - containerPort: 30000
         - containerPort: 8000
-      terminationGracePeriodSeconds: 18
+      terminationGracePeriodSeconds: 180

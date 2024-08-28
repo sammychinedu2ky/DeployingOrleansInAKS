@@ -15,9 +15,10 @@ builder.UseOrleans(option =>
         option.UseKubernetesHosting();
     }
 
-    option.UseDashboard(i =>
+    option.UseDashboard(option =>
     {
-        i.BasePath = "/dashboard";
+        option.BasePath = "/dashboard";
+        option.Port = dashboardPortInt;
     });
 });
 var app = builder.Build();

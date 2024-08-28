@@ -9,6 +9,10 @@ spec:
     protocol: TCP
     targetPort: 8080
     name: api-port
+  - port: 81
+    protocol: TCP
+    targetPort: 8000
+    name: dashboard-port
   selector:
     app: api
 
