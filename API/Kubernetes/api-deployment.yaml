@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: api
 spec:
+  strategy:
+   rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   replicas: 2
   selector:
     matchLabels:
@@ -14,7 +18,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: orleansgroupacr.azurecr.io/api:v8
+        image: orleansgroupacr.azurecr.io/api:v2
         env:
         - name: ORLEANS_SERVICE_ID
           value: "orleans-in-aks"
@@ -45,8 +49,11 @@ spec:
               key: connectionString
         - name: ORLEANS-SILO-DASHBOARD
           value: "8000"
+        - name: DOTNET_SHUTDOWNTIMEOUTSECONDS
+          value: "6"
         ports:
         - containerPort: 8080
         - containerPort: 11111
         - containerPort: 30000
         - containerPort: 8000
+      terminationGracePeriodSeconds: 18

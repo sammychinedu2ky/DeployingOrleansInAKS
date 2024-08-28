@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.AddServiceDefaults();
+builder.AddServiceDefaults();
 var dashBoardPort = builder.Configuration["ORLEANS-SILO-DASHBOARD"]!;
 var dashboardPortInt = Convert.ToInt32(dashBoardPort);
 
@@ -15,14 +15,14 @@ builder.UseOrleans(option =>
         option.UseKubernetesHosting();
     }
 
-    option.UseDashboard(option =>
+    option.UseDashboard(i =>
     {
-        option.Port = dashboardPortInt;
+        i.BasePath = "/dashboard";
     });
 });
 var app = builder.Build();
 
-//app.MapDefaultEndpoints();
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
