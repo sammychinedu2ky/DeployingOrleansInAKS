@@ -15,15 +15,13 @@ spec:
     metadata:
       labels:
         app: api
+        orelans/serviceId: orleans-in-aks
+        orelans/clusterId: orleans-in-aks
     spec:
       containers:
       - name: api
         image: orleansgroupacr.azurecr.io/api:v6
         env:
-        - name: ORLEANS_SERVICE_ID
-          value: "orleans-in-aks"
-        - name: ORLEANS_CLUSTER_ID
-          value: "orleans-in-aks"
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
