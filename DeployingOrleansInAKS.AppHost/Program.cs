@@ -1,6 +1,7 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis");
+
 var orleans = builder.AddOrleans("orleans-cluster")
     .WithClustering(redis);
 

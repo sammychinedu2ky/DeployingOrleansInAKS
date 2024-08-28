@@ -15,8 +15,8 @@ spec:
     metadata:
       labels:
         app: api
-        orelans/serviceId: orleans-in-aks
-        orelans/clusterId: orleans-in-aks
+        oreleans/serviceId: orleans-in-aks
+        oreleans/clusterId: orleans-in-aks
     spec:
       containers:
       - name: api
