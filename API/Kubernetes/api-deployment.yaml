@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: myregistry.azurecr.io/api:v1
+        image: myorleansregistry.azurecr.io/api:v1
         env:
         - name: POD_NAMESPACE
           valueFrom:
