@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: orleans-cluster-config
-data:
-  clusterId: "your-cluster-id"
-  serviceId: "your-service-id"
